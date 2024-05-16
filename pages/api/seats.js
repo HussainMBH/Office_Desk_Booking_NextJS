@@ -14,6 +14,10 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.status(200)
   }
+ 
+
+
+
   if (req.method === 'GET') {
     const seatRslt = await conn.query('SELECT * FROM  book_a_seat.seat_objs'/*, values*/);
     const tableRslt = await conn.query('SELECT * FROM  book_a_seat.table_objs'/*, values*/);;

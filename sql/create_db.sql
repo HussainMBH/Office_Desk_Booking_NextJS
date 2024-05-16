@@ -2,6 +2,8 @@
 
 -- DROP TABLE book_a_seat.table_objs;
 
+CREATE SCHEMA book_a_seat;
+
 CREATE TABLE book_a_seat.table_objs (
 	id serial4 NOT NULL,
 	"name" varchar NOT NULL,
@@ -48,3 +50,18 @@ INSERT INTO book_a_seat.seat_objs ("name",x,y) VALUES
 	 ('chair 1',599.0,219.0),
 	 ('chair 2',599.0,111.0);
 
+-- DROP TABLE book_a_seat.users;
+
+CREATE TABLE book_a_seat.users (
+	id serial4 NOT NULL,
+	username varchar NOT NULL UNIQUE,
+	password varchar NOT NULL,
+	role varchar NOT NULL,
+	CONSTRAINT users_pk PRIMARY KEY (id)
+);
+
+INSERT INTO book_a_seat.users (username, password, role) VALUES
+	('admin0', '$2b$10$E6vTgDQyFh1Dhq7kGB/78.TCVODU4A2MiXpCwdDZQFnFrgHV4cZCO', 'admin'),
+	('user1', '$2b$10$ANbC.vvD1V.Y/UH0pZ4XOeZAG9PqZ6x5.t6uAvcB4eBs4zldh3sXq', 'user'),
+	('anika', '$2b$10$Zi9ElMaXG4b5KdEyrh7/ROEIsR9qEJgOw3xHz2wI9SmxKhQk5Pv12', 'admin'),
+	('user3', '$2b$10$RkGk.Kg0RjH7E5QyK7zFeOdVXsFVUC5zKbcDJaHov.5PbY5l/pU8G', 'user');
