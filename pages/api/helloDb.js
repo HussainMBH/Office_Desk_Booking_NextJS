@@ -1,5 +1,6 @@
-import { Pool, Client } from 'pg'
+import { Pool } from 'pg';
 
+// PostgreSQL connection pool
 const poolSetting = {
   user: process.env.PGSQL_USER,
   password: process.env.PGSQL_PASSWORD,
@@ -8,22 +9,17 @@ const poolSetting = {
   database: process.env.PGSQL_DATABASE,
 };
 
+const pool = new Pool(poolSetting);
 
-export default function handler(req, res) {
-    const queryDb = async () => {
-        try {
-            const pool = new Pool(poolSetting)
-            await pool.connect();
-            const rslt = await pool.query('SELECT * FROM  book_a_seat.seat_objs');
-            pool.end()
-            // res.send(rslt.rows);
-            res.status(200).json({ rows: rslt.rows})
-        } catch (error) {
-            console.log(error)
-            res.status(200).json({ rows: null})
-        }    
-    }
-    queryDb();
+export default async function handler(req, res) {
+  try {
+    // Retrieve data from PostgreSQL
+    const result = await pool.query('SELECT * FROM book_a_seat.seat_objs');
 
-    // res.status(200).json({ rows: "test"})
+    // Send response with the retrieved rows
+    res.status(200).json({ rows: result.rows });
+  } catch (error) {
+    console.error('Error executing query:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 }

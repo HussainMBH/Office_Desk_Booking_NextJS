@@ -4,7 +4,7 @@ import { cors, runMiddleware } from '../../lib/db';
 const fakeLogin = [
   { user: "admin0", pwd: "admin0", role: "admin" },
   { user: "user1", pwd: "user1", role: "user" },
-  { user: "anika", pwd: "anika123", role: "admin" },
+  { user: "Bahir", pwd: "Bahir123", role: "admin" },
   { user: "user3", pwd: "user3", role: "user" },
 ];
 
